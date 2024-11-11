@@ -1,0 +1,40 @@
+<div class="flex align-items-center justify-content-center lg:px-8 md:px-6 px-4 py-8 surface-ground min-h-screen">
+    <div class="surface-card p-6 shadow-4 border-round w-full lg:w-5 md:w-7 sm:w-10">
+        <div class="text-center mb-6">
+            <img src="assets/logo.png" alt="Image" height="50" class="mb-3 border-round">
+            <div class="text-900 text-3xl font-bold mb-2">Create an Account</div>
+            <span class="text-600 font-medium">Already have an account?</span>
+            <a class="font-medium text-blue-500 cursor-pointer ml-2">Sign In</a>
+        </div>
+
+        <div>
+            <label for="username" class="block text-900 font-medium mb-2">Username</label>
+            <input id="username" type="text" placeholder="Choose a username" class="p-inputtext p-component p-element w-full mb-4">
+
+            <label for="email" class="block text-900 font-medium mb-2">Email</label>
+            <input id="email" type="email" placeholder="Your email address" class="p-inputtext p-component p-element w-full mb-4">
+
+            <label for="phone" class="block text-900 font-medium mb-2">Phone Number</label>
+            <input id="phone" type="tel" placeholder="Your phone number" class="p-inputtext p-component p-element w-full mb-4">
+
+            <label for="password" class="block text-900 font-medium mb-2">Password</label>
+            <input id="password" type="password" placeholder="Create a password" class="p-inputtext p-component p-element w-full mb-4">
+
+            <label for="confirmPassword" class="block text-900 font-medium mb-2">Confirm Password</label>
+            <input id="confirmPassword" type="password" placeholder="Confirm your password" class="p-inputtext p-component p-element w-full mb-5">
+
+            <div class="flex align-items-center mb-4">
+                <p-checkbox id="terms" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="terms" class="text-900">I agree to the <a href="#" class="text-blue-500">Terms and Conditions</a></label>
+            </div>
+
+            <div class="flex align-items-center mb-5">
+                <p-checkbox id="notRobot" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="notRobot" class="text-900">I'm not a robot</label>
+            </div>
+
+            <button pButton pRipple label="Register" icon="pi pi-user-plus" class="w-full mb-3 surface-500 text-white"></button>
+            <button pButton pRipple label="Back to Login" icon="pi pi-sign-in" class="w-full text-600 surface-300"></button>
+        </div>
+    </div>
+</div>
