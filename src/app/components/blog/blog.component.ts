@@ -3,13 +3,33 @@ import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
 import { ChipModule } from 'primeng/chip';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { DataViewModule } from 'primeng/dataview';
+import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+import { CommonModule } from '@angular/common';
 
 import AOS from 'aos';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive,CarouselModule,ChipModule],
+  imports: [
+    RouterLink, 
+    RouterLinkActive,
+    CarouselModule,
+    ChipModule,
+    IconFieldModule,
+    InputIconModule,
+    InputTextModule,
+    DataViewModule,
+    ButtonModule,
+    TagModule,
+    CommonModule
+  
+  ],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
@@ -32,9 +52,9 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  toBlog() {
+  toBlogs() {
     if (isPlatformBrowser(this.platformId)) {
-      this.document.getElementById("blog-sec")?.scrollIntoView({ behavior: "smooth" });
+      this.document.getElementById("blogs")?.scrollIntoView({ behavior: "smooth" });
     }
   }
 

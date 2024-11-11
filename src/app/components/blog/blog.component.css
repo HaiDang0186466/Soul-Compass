@@ -153,7 +153,7 @@ nav {
     align-items: center;
     padding: 2rem;
     min-height: 100vh;
-    background-color: #6394a7;
+    background-color: #f6ecd8;
     flex-direction: column;
     gap:50px;
    
@@ -163,9 +163,12 @@ nav {
     display: flex;
     gap: 20px;
     align-items: center;
+    padding-top: 50px;
 }
 .sec-head1 h2{
+    font-size: 2rem;
     font-family: "Noto Serif", serif;
+    color: #504d4d;
 }
 .sec1-icon{
     list-style: none;
@@ -227,21 +230,99 @@ nav {
 .btn-car:hover{
     opacity: 0.8;
 }
+.btn-bot{
+    border-color: transparent;
+    background-color: transparent;
+    animation: blink 1s infinite;
+    animation: bounce 1.5s infinite;
+    cursor: pointer;
+}
 
 
 
 /* Sec 2*/
+#blogs {
+    scroll-margin-top: 80px;
+}
 .sec-2{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    padding: 0 20px;
     min-height: 100vh;
     background-color: #287ac7;
     flex-direction: column;
     gap:50px;
     min-height: 100vh;
+}
+.header-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+.search{
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
 
+}
+.search-bar {
+    position: relative;
+    width: 100%;
+    min-width: 450px; /* Đặt giới hạn chiều rộng */
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc; /* Viền màu xám nhạt */
+    border-radius: 20px; /* Bo góc tròn */
+    background-color: #f8f9fa; /* Màu nền nhạt */
+    padding: 5px 10px; /* Khoảng cách trong */
+    transition: border-color 0.3s ease;
+}
+
+/* Ô nhập liệu */
+.search-bar input[type="text"] {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 8px 0;
+    font-size: 1rem;
+    color: #514b4b; /* Màu chữ */
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #aaa; /* Màu placeholder nhạt */
+}
+
+/* Hiệu ứng hover cho toàn khung tìm kiếm */
+.search-bar:hover {
+    border-color: #865edd; /* Đổi màu viền khi hover */
+}
+
+
+
+
+
+.top-sec2 {
+    margin: 0;
+    text-align: center;
+}
+
+.chip-head {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.blogs {
+    margin-top: 30px;
 }
 
 /* Footer*/
