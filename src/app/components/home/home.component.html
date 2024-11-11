@@ -1,0 +1,166 @@
+<div class="container" #scroll>
+    <section class="top" id = "home">
+        <div class="top-box">
+            <nav>
+                <div class="Right-top">
+                    <div class="logo" routerLink="/home" routerLinkActive="active">
+                        <img src="assets/logo.png" alt="Soul Compass">
+                        <h3>Soul Compass</h3>
+                    </div>
+                   
+                </div>
+                <div class="Mid-top">
+                    <button class="left-arrow"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
+                    <ul>
+            
+                        <li><a routerLink="/home" routerLinkActive="active">Home
+                            <i class="pi pi-home" style="font-size: 1rem"></i>
+                        </a></li>
+                        <li><a routerLink="/blog" routerLinkActive="active">Blog
+                            <i class="pi pi-moon" style="font-size: 1rem"></i>
+                        </a></li>
+                        <li><a routerLink="/test" routerLinkActive="active">Test
+                            <i class="pi pi-clipboard" style="font-size: 1rem"></i>
+                        </a></li>
+                        <li><a routerLink="/user" routerLinkActive="active">Contact
+                            <i class="pi pi-phone" style="font-size: 1rem"></i>
+                        </a></li>
+                        
+                    </ul>
+    
+                </div>
+                <div class="Left-top">
+                    <ul>
+                        <li><a href="">Login</a></li>
+                        <li><a href="">SignUp</a></li>
+                    </ul>
+                    <button class="tab-bar"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
+                </div>
+            </nav>
+        </div>
+    </section>
+    
+    
+    <section class="body" id ="top-section">
+        <div class="body-content1">
+            <div class="do-test" data-aos="fade-up">
+                <h1 class="brand">Soul Compass</h1>
+                <h3 class="slogan">Nơi Định Hướng Tâm Hồn</h3>
+                <p>Soul Compass sẽ là người bạn đồng hành giúp bạn hiểu rõ bản thân hơn, từ đó từng bước đi đến sự bình an và vững vàng trong tâm hồn.</p>
+                <h3>Hãy cùng kiểm tra trạng thái của bạn nhé</h3>
+                <div class="btt-tett">
+                  <button class="bt-test" routerLink="/test" routerLinkActive="active">Kiểm tra</button>
+                </div>
+            </div>
+            <div class="mascot-image" data-aos="fade-left">
+                <img src="assets/compass.gif" alt="Mascot">
+            </div>
+            
+        </div>
+        <div class="bottom-btn">
+                <button class="btn-bot" (click)="toBlog()" routerLinkActive="active">
+                    <i class="pi pi-angle-down" style="font-size: 2.5rem"></i>
+                </button>
+        </div>
+    </section>
+    
+    
+    <section class="blogs" id ="blog-sec">
+        <div class="blog-section">
+            <div class="blog-detail" data-aos="fade-up"
+            data-aos-duration="1000">
+                <h2 class="blog-title">Blog</h2>
+                <p>Con người luôn cần sự kết nối và chia sẻ, bởi đó là nguồn động lực giúp chúng ta vượt qua những khó khăn trong cuộc sống. Khi chia sẻ, chúng ta không chỉ bày tỏ cảm xúc mà còn tìm thấy sự đồng cảm, an ủi từ người khác. Kết nối với mọi người giúp chúng ta cảm thấy thuộc về, hiểu rằng mình không đơn độc. Qua những câu chuyện và trải nghiệm được sẻ chia, mỗi người tìm thấy sự nhẹ nhõm, cảm giác được lắng nghe và trân trọng. Đó là sức mạnh tinh thần mà chỉ có sự kết nối thực sự mới mang lại.</p>
+                <p>Tại Soul Compass, bạn không chỉ được cung cấp các công cụ để tự đánh giá trạng thái tâm lý của mình, mà còn có một không gian mở để chia sẻ câu chuyện, bài viết và trải nghiệm về sức khỏe tinh thần. Đây là nơi mọi người có thể cùng nhau hỗ trợ, đồng cảm và trao đổi kiến thức, tạo nên một cộng đồng tích cực và giàu tình thương.</p>
+                <h3>Hãy cùng chia sẻ những câu chuyện của bạn tại đây</h3>
+                <li class="bl-btn" routerLink="/blog" routerLinkActive="active">Blog
+                    <i class="pi pi-moon" style="font-size: 1.2rem"></i>
+                    
+                </li>
+            </div>
+            <div class="image2" data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1000" >
+                <img src="assets\connect.gif" alt="About" class="blog-image">
+            </div>
+        </div>
+        <div class="bottom-btn">
+            <button class="btn-bot" (click)="toContact()" routerLinkActive="active">
+                <i class="pi pi-angle-down" style="font-size: 2.5rem"></i>
+            </button>
+        </div>
+    </section>
+    <section class="contact-section" id ="contact-sec">
+        <div class="contact-content">
+            <div class="image3" data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine">
+                <img src="assets\doc.gif" alt="About" class="about-image">
+            </div>
+            <div class="contact-detail" data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="1500">
+                <h2 class="contact-title">Contact</h2>
+                <p>Gặp bác sĩ tâm lý là một bước quan trọng và tích cực trong việc chăm sóc sức khỏe tinh thần. Khi trải qua những cảm xúc khó khăn hay đối mặt với áp lực lớn, việc trò chuyện với bác sĩ tâm lý giúp ta khám phá nguyên nhân gốc rễ của vấn đề và tìm ra cách xử lý phù hợp. Bác sĩ tâm lý không chỉ lắng nghe mà còn cung cấp các phương pháp khoa học để quản lý cảm xúc, thay đổi lối suy nghĩ tiêu cực và xây dựng kỹ năng đối phó. Việc tìm kiếm hỗ trợ từ chuyên gia thể hiện sự mạnh mẽ và cam kết chăm sóc bản thân, đồng thời giúp mỗi người duy trì trạng thái tinh thần khỏe mạnh và tìm lại cân bằng trong cuộc sống.</p>
+                <h3>Tìm Bác sĩ tâm lý tại đây</h3>
+                <li class="ct-btn" routerLink="/blog" routerLinkActive="active">Contact
+                    <i class="pi pi-phone" style="font-size: 1.2rem"></i>
+                </li>
+            </div>
+        </div>
+        <div class="bottom-btn">
+            <button class="btn-bot" (click)="toAbout()" routerLinkActive="active">
+                <i class="pi pi-angle-down" style="font-size: 2.5rem"></i>
+            </button>
+        </div>
+        
+    </section>
+    
+    <section class="about-section" id ="about">
+        <div class="about-content">
+            <div class="image1" data-aos="fade-up-right" >
+                <img src="assets\pic1.png" alt="About" class="about-image">
+            </div>
+            <div class="about-detail" data-aos="fade-down-left">
+                <h2 class="about-title">About Us</h2>
+                <h1 class="brand">Soul Compass</h1>
+                <h3 class="slogan">Nơi Định Hướng Tâm Hồn</h3>
+                <p>Soul Compass – "La bàn tâm hồn" là một trang web ra đời với mục đích đồng hành cùng bạn trong hành trình tìm hiểu và chăm sóc sức khỏe tinh thần. Như một chiếc la bàn định hướng, Soul Compass sẽ giúp bạn khám phá cảm xúc, nhận diện mức độ trầm cảm và cung cấp kiến thức cần thiết để bạn cảm thấy tự tin đối diện với những thử thách trong cuộc sống.</p>
+                <p>Tại Soul Compass, bạn không chỉ được cung cấp các công cụ để tự đánh giá trạng thái tâm lý của mình, mà còn có một không gian mở để chia sẻ câu chuyện, bài viết và trải nghiệm về sức khỏe tinh thần. Đây là nơi mọi người có thể cùng nhau hỗ trợ, đồng cảm và trao đổi kiến thức, tạo nên một cộng đồng tích cực và giàu tình thương.</p>
+                <div class="icon2">
+                    <a><i class="pi pi-facebook" style="font-size: 2rem"></i></a>
+                    <a><i class="pi pi-youtube" style="font-size: 2rem"></i></a>
+                    <a><i class="pi pi-tiktok" style="font-size: 2rem"></i></a>
+                    <a><i class="pi pi-discord" style="font-size: 2rem"></i></a>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    
+    
+    <section class="footer" >
+        <div class="footer-content">
+            <h3>Soul Compass</h3>
+            <p>Nơi Định Hướng Tâm Hồn</p>
+            <div class="icon">
+                <a><i class="pi pi-facebook" style="font-size: 1.3rem"></i></a>
+                <a href="" class=""><i class="pi pi-youtube" style="font-size: 1.3rem"></i></a>
+                <a href="" class=""><i class="pi pi-tiktok" style="font-size: 1.3rem"></i></a>
+                <a href="" class=""><i class="pi pi-discord" style="font-size: 1.3rem"></i></a>
+            </div>
+        </div>
+        <div class="footer-content">
+            <li (click)="toHome()" routerLinkActive="active"><a>Home</a></li>
+            <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+            <li><a routerLink="/test" routerLinkActive="active">Test</a></li>
+            <li><a>Contact</a></li>
+        </div>
+        <div class="footer-content">
+            <li><a>Help</a></li>
+            <li><a>Privacy</a></li>
+            <li><a>Condition</a></li>
+            <li><a>FAQS</a></li>
+        </div>
+    </section>
+    </div>
