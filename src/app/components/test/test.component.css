@@ -1,0 +1,243 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif,'Dancing Script', cursive, "Bree Serif", serif, "Miniver", cursive, "Noto Serif", serif;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*Top*/
+.top {
+    width: 100%;
+    background-color: #D3E6E8; 
+    border-bottom: 2px solid #e9ecef;
+    padding: 15px 0;
+    z-index: 999;
+}
+
+.top-box {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px ;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+.Right-top {
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo img {
+    width: 70px; 
+    height: 70px;
+    margin-right: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.Right-top h3 {
+    font-size: 2.5rem;
+    color: #504d4d;
+    font-weight: bold;
+    font-family: 'Great Vibes', cursive;
+    cursor: pointer;
+}
+
+.Mid-top ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.Mid-top ul li a {
+    text-decoration: none;
+    color: #284869;
+    font-weight: 500;
+    padding: 18px 16px;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 10px;
+}
+.Mid-top ul li a:hover, .Mid-top ul li a.active {
+    background-color: #c4b0ef;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Left-top ul {
+    list-style-type: none;
+    display: flex;
+    gap: 10px;
+}
+
+.Left-top li {
+    list-style-type: none;
+}
+
+.Left-top li a {
+    text-decoration: none;
+    color: #284869;
+    font-weight: 500;
+    padding: 18px 16px;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 10px;
+}
+
+.Left-top ul li a:hover, .Left-top ul li a.active {
+    background-color: #865edd;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Left-top .tab-bar{
+    display: none;
+}
+.Mid-top .left-arrow{
+    display: none;
+}
+
+/*Body-1*/
+.body-1{
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f6ecd8;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.text-center i{
+    animation: blink 1.5s infinite;
+}
+
+.test{
+    min-height: 100vh;
+    width: 100%;
+    background-color: #cdbbf3;
+}
+
+
+/*Test-section*/
+.test-here{
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    padding-top: 100px;
+}
+
+
+/*Footer*/
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #333; /* Điều chỉnh màu nền theo ý muốn */
+    color: #fff;
+    padding: 2rem;
+}
+
+.footer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-family: 'Great Vibes', cursive;
+}
+
+.footer-content p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.footer-content li {
+    list-style: none;
+    margin: 0.5rem 0;
+}
+
+.footer-content li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.footer-content li a:hover {
+    color: #007bff; /* Màu khi hover */
+}
+
+.icon,
+.icon2 {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.icon2 a{
+    color: #4e1cb9;
+}
+
+.icon a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.icon a:hover {
+    color: #865edd; /* Màu khi hover cho biểu tượng */
+}
+
+
+
+.footer-content li a{
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.footer-content li a:hover{
+    color: #504d4d;
+}

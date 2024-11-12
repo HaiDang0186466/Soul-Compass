@@ -1,7 +1,7 @@
 <div class="container" #scroll>
 
     <!-- Menu Bar -->
-    <section class="top" id = "home">
+    <section class="top sticky top-0" id = "home">
         <div class="top-box">
             <nav>
                 <div class="Right-top">
@@ -105,7 +105,7 @@
                 <p-dataView [value]="[]" [rows]="5" [paginator]="true">
                     <ng-template pTemplate="list">
                         <div class="grid grid-nogutter">
-                            <div class="col-12" *ngFor="let item of [1,2,3,4,5]; let first = first" class="col-12">
+                            <div class="border-1 surface-border border-round m-2 p-3" *ngFor="let item of [1,2,3,4,5]; let first = first" class="col-12">
                                 <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3" [ngClass]="{ 'border-top-1 surface-border': !first }">
                                     <div class="md:w-10rem relative">
                                         <img class="block xl:block mx-auto border-round w-full" src="assets/4.gif" alt="" />

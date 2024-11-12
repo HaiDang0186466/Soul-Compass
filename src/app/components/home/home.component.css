@@ -1,4 +1,4 @@
-/* General Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -26,9 +26,7 @@ html,body {
 }
 /* Top CSS*/
 .top {
-    position: fixed;
-    top: 0;
-    left: 0;
+   
     width: 100%;
     background-color: #D3E6E8; 
     border-bottom: 2px solid #e9ecef;

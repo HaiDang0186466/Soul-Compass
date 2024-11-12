@@ -21,9 +21,6 @@ html,body {
 
 /* Top CSS*/
 .top {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     background-color: #D3E6E8; 
     border-bottom: 2px solid #e9ecef;
@@ -163,7 +160,7 @@ nav {
     display: flex;
     gap: 20px;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 0px;
 }
 .sec-head1 h2{
     font-size: 2rem;

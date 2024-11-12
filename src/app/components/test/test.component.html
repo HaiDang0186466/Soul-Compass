@@ -1,0 +1,203 @@
+<!-- Menubar -->
+<section class="top sticky top-0">
+    <div class="top-box">
+        <nav>
+            <div class="Right-top">
+                <div class="logo" routerLink="/home" routerLinkActive="active">
+                    <img src="assets/logo.png" alt="Soul Compass">
+                    <h3>Soul Compass</h3>
+                </div>
+               
+            </div>
+            <div class="Mid-top">
+                <button class="left-arrow"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
+                <ul>
+        
+                    <li><a routerLink="/home" routerLinkActive="active">Home
+                        <i class="pi pi-home" style="font-size: 1rem"></i>
+                    </a></li>
+                    <li><a routerLink="/blog" routerLinkActive="active">Blog
+                        <i class="pi pi-moon" style="font-size: 1rem"></i>
+                    </a></li>
+                    <li><a routerLink="/test" routerLinkActive="active">Test
+                        <i class="pi pi-clipboard" style="font-size: 1rem"></i>
+                    </a></li>
+                    <li><a routerLink="/user" routerLinkActive="active">Contact
+                        <i class="pi pi-phone" style="font-size: 1rem"></i>
+                    </a></li>
+                    
+                </ul>
+
+            </div>
+            <div class="Left-top">
+                <ul>
+                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                    <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                </ul>
+                <button class="tab-bar"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+<section class="body-1 flex flex-column align-items-center  py-5">
+
+    <div class="text-center mb-5">
+        <span class="text-900 font-bold text-2xl">How Are You Today </span>
+        <i class="pi pi-heart-fill text-red-500 text-2xl"></i>
+    </div>
+
+    <div class="">
+        <div class="flex flex-wrap justify-content-center gap-7">
+
+            <!-- Hộp Happy -->
+            <div class="surface-card shadow-2 p-4 border-round ">
+                <div class="text-center mb-2">
+                    <span class="text-900 font-bold text-lg">Happy</span>
+                </div>
+                <div class="text-center my-2">
+                    <span class="text-green-500 font-bold text-3xl">000</span>
+                </div>
+                <div class="text-center my-2">
+                    <span class="text-500">Users are happy today</span>
+                </div>
+                <div class="flex cursor-pointer align-items-center justify-content-center mt-3">
+                    <div class="flex bg-cyan-100 hover:bg-cyan-300 align-items-center justify-content-center border-round" 
+                         style="width:3rem; height:3rem;"
+                         (click)="toggleIcon()">
+                        <i  [ngClass]="{'pi-thumbs-up': !clicked, 'pi-thumbs-up-fill': clicked}" 
+                        class="pi text-cyan-500 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hộp Normal -->
+            <div class="surface-card shadow-2 p-4 border-round ">
+                <div class="text-center mb-2">
+                    <span class="text-900 font-bold text-lg">Normal</span>
+                </div>
+                <div class="text-center my-2">
+                    <span class="text-yellow-500 font-bold text-3xl">000</span>
+                </div>
+                <div class="text-center my-2">
+                    <span class="text-500">Users are normal today</span>
+                </div>
+                <div class="flex cursor-pointer align-items-center justify-content-center mt-3">
+                    <div class="flex bg-yellow-100 hover:bg-yellow-300 align-items-center justify-content-center  border-round" 
+                         style="width:3rem; height:3rem;"
+                         (click)="toggleIcon1()">
+                        <i [ngClass]="{'pi-star': !clicked1, 'pi-star-fill': clicked1}" 
+                        class="pi text-green-500 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hộp Sad -->
+            <div class="surface-card shadow-2 p-4 border-round ">
+                <div class="text-center mb-2">
+                    <span class="text-900 font-bold text-lg">Sad</span>
+                </div>
+                <div class="text-center my-2">
+                    <span class="text-red-500 font-bold text-3xl">000</span>
+                </div>
+                <div class="text-center my-2">
+                    <span class="text-500">Users are sad today</span>
+                </div>
+                <div class="flex cursor-pointer align-items-center justify-content-center mt-3">
+                    <div class="flex bg-pink-100 hover:bg-pink-300 align-items-center justify-content-center border-round"
+                         style="width:3rem; height:3rem;"
+                         (click)="toggleIcon2()">
+                        <i 
+                        [ngClass]="{'pi-thumbs-down': !clicked2, 'pi-thumbs-down-fill': clicked2}" 
+                        class="pi text-pink-500 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center align-items-center mt-3 w-full md:w-6 lg:w-4">
+        <p-card header="Quote of the Day" class="text-center p-5">
+            <div class="quote-content">
+                <p class="text-xl text-700 mb-2">"The only way to do great work is to love what you do."</p>
+                <p class="text-sm text-text-500 font-italic mb-4">- Steve Jobs -</p>
+            </div>
+            <p-button size="large" label="Do Test Here" [outlined]="true" severity="success" (click)="toTest()" routerLinkActive="active"/>
+        </p-card>
+    </div>
+
+</section>
+
+<section class="test" id="Test"  *ngIf="showTestSection">
+    
+    <!-- Quiz -->
+    <div class="test-here">
+        <div class="grid nested-grid">
+            <div class="col-8">
+                <div class="grid">
+                    <div class="col-12 p-3">
+                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Đây Là Câu Hỏi</div>
+                    </div>
+                    <div class="col-6 p-3">
+                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 1</div>
+                    </div>
+                    <div class="col-6 p-3">
+                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 2</div>
+                    </div>
+                    <div class="col-6 p-3">
+                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 3</div>
+                    </div>
+                    <div class="col-6 p-3">
+                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 4</div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card-container">
+                    <p-card header="Progress" class="text-center p-2">
+                        <div class="quote-content">
+                            <p class="text-xl p-2 text-700 mb-2">01/30</p>
+                        </div>
+                        <p-button class="p-2" size="large" label="Done" severity="success"></p-button>
+                        <p-button class="p-2" size="large" label="Quit" severity="danger"></p-button>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+</section>
+
+<p-button pButton label="JavaScript" (click)="selectAnswer('JavaScript')" class="text-center p-3 border-round-sm"></p-button>
+
+<!-- Footer -->
+<section class="footer" >
+    <div class="footer-content">
+        <h3>Soul Compass</h3>
+        <p>Nơi Định Hướng Tâm Hồn</p>
+        <div class="icon">
+            <a><i class="pi pi-facebook" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-youtube" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-tiktok" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-discord" style="font-size: 1.3rem"></i></a>
+        </div>
+    </div>
+    <div class="footer-content">
+        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+        <li><a routerLink="/test" routerLinkActive="active">Test</a></li>
+        <li><a>Contact</a></li>
+    </div>
+    <div class="footer-content">
+        <li><a>Help</a></li>
+        <li><a>Privacy</a></li>
+        <li><a>Condition</a></li>
+        <li><a>FAQS</a></li>
+    </div>
+</section>
+
