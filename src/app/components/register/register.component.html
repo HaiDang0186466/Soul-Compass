@@ -1,40 +1,118 @@
-<div class="flex align-items-center justify-content-center lg:px-8 md:px-6 px-4 py-8 surface-ground min-h-screen">
-    <div class="surface-card p-6 shadow-4 border-round w-full lg:w-5 md:w-7 sm:w-10">
-        <div class="text-center mb-6">
-            <img src="assets/logo.png" alt="Image" height="50" class="mb-3 border-round">
-            <div class="text-900 text-3xl font-bold mb-2">Create an Account</div>
-            <span class="text-600 font-medium">Already have an account?</span>
-            <a class="font-medium text-blue-500 cursor-pointer ml-2">Sign In</a>
-        </div>
 
-        <div>
-            <label for="username" class="block text-900 font-medium mb-2">Username</label>
-            <input id="username" type="text" placeholder="Choose a username" class="p-inputtext p-component p-element w-full mb-4">
-
-            <label for="email" class="block text-900 font-medium mb-2">Email</label>
-            <input id="email" type="email" placeholder="Your email address" class="p-inputtext p-component p-element w-full mb-4">
-
-            <label for="phone" class="block text-900 font-medium mb-2">Phone Number</label>
-            <input id="phone" type="tel" placeholder="Your phone number" class="p-inputtext p-component p-element w-full mb-4">
-
-            <label for="password" class="block text-900 font-medium mb-2">Password</label>
-            <input id="password" type="password" placeholder="Create a password" class="p-inputtext p-component p-element w-full mb-4">
-
-            <label for="confirmPassword" class="block text-900 font-medium mb-2">Confirm Password</label>
-            <input id="confirmPassword" type="password" placeholder="Confirm your password" class="p-inputtext p-component p-element w-full mb-5">
-
-            <div class="flex align-items-center mb-4">
-                <p-checkbox id="terms" [binary]="true" styleClass="mr-2"></p-checkbox>
-                <label for="terms" class="text-900">I agree to the <a href="#" class="text-blue-500">Terms and Conditions</a></label>
+<!-- Register -->
+<section class="regis-form">
+    <div class="flex align-items-center justify-content-center lg:px-8 md:px-6 px-4 py-8 min-h-screen" style="background-color: #f6ecd8">
+        <div class="surface-card p-6 shadow-4 border-round w-full lg:w-5 md:w-7 sm:w-10">
+            <div class="text-center mb-6">
+                <img src="assets/logo.png" alt="Image" height="50" class="mb-3 border-round">
+                <div class="text-900 text-3xl font-bold mb-2">Create an Account</div>
+                <span class="text-600 font-medium">Already have an account?</span>
+                <a class="font-medium text-blue-500 cursor-pointer ml-2" routerLink="/login" routerLinkActive="active">Sign In</a>
             </div>
 
-            <div class="flex align-items-center mb-5">
-                <p-checkbox id="notRobot" [binary]="true" styleClass="mr-2"></p-checkbox>
-                <label for="notRobot" class="text-900">I'm not a robot</label>
-            </div>
+            <div>
+                <label for="username" class="block text-900 font-medium mb-2">Username</label>
+                <input id="username" type="text" placeholder="Choose a username" class="p-inputtext p-component p-element w-full mb-4">
 
-            <button pButton pRipple label="Register" icon="pi pi-user-plus" class="w-full mb-3 surface-500 text-white"></button>
-            <button pButton pRipple label="Back to Login" icon="pi pi-sign-in" class="w-full text-600 surface-300"></button>
+                <label for="email" class="block text-900 font-medium mb-2">Email</label>
+                <input id="email" type="email" placeholder="Your email address" class="p-inputtext p-component p-element w-full mb-4">
+
+                <label for="phone" class="block text-900 font-medium mb-2">Phone Number</label>
+                <input id="phone" type="tel" placeholder="Your phone number" class="p-inputtext p-component p-element w-full mb-4">
+
+                <label for="password" class="block text-900 font-medium mb-2">Password</label>
+                <input id="password" type="password" placeholder="Create a password" class="p-inputtext p-component p-element w-full mb-4">
+
+                <label for="confirmPassword" class="block text-900 font-medium mb-2">Confirm Password</label>
+                <input id="confirmPassword" type="password" placeholder="Confirm your password" class="p-inputtext p-component p-element w-full mb-5">
+
+                <div class="flex align-items-center mb-4">
+                    <p-checkbox id="terms" [binary]="true" styleClass="mr-2"></p-checkbox>
+                    <label for="terms" class="text-900">I agree to the <a href="#" class="text-blue-500">Terms and Conditions</a></label>
+                </div>
+
+                <div class="flex align-items-center mb-5">
+                    <div *ngIf="!captchaVerified">
+                        <form [formGroup]="aFormGroup">
+                            <ngx-recaptcha2
+                                #captchaElem
+                                [siteKey]="siteKey"
+                                formControlName="recaptcha"
+                                (success)="onCaptchaSuccess()">
+                            </ngx-recaptcha2>
+                        </form>
+                    </div>
+                
+                    <!-- Thông báo sau khi captcha xong-->
+                    <div *ngIf="captchaVerified" class="flex align-items-center mb-4">
+                        <span class="text-green-500 font-medium">You are not a robot</span>
+                        <i class="pi pi-check text-green-500 ml-2"></i>
+                    </div>
+                </div>
+                                
+                <!-- Nút Register -->
+                <button pButton pRipple 
+                        label="Register" 
+                        icon="pi pi-user-plus" 
+                        class="w-full mb-3 text-white shadow-3 hover:shadow-5" 
+                        style="background-color: var(--purple-400);" 
+                        [disabled]="!captchaVerified || registrationStatus === 'success'"
+                        (click)="onRegister()">
+                </button>
+
+                <div *ngIf="registrationStatus === 'sendingRequest'" class="text-center text-blue-600 mb-3 mr-2">
+                    Sending request...<i class="pi pi-spin pi-cog"></i>
+                  </div>
+                  
+                  <div *ngIf="registrationStatus === 'requestSent'" class="text-center text-green-500 mb-3 mr-2">
+                    Request sent! <i class="pi pi-check"></i>
+                  </div>
+                  
+                  <div *ngIf="registrationStatus === 'creatingAccount'" class="text-center text-orange-600 mb-3 mr-2">
+                    Đang tạo tài khoản...<i class="pi pi-spin pi-cog"></i>
+                  </div>
+                  
+                  <div *ngIf="registrationStatus === 'success'" class="text-center text-green-500 mb-3 mr-2">
+                    Đăng ký thành công! <i class="pi pi-check"></i>
+                  </div>
+                <button *ngIf="registrationStatus === 'success'" 
+                                pButton pRipple 
+                                label="Log in your new Account" 
+                                icon="pi pi-sign-in" 
+                                class="w-full text-white shadow-3 hover:shadow-5" 
+                                style="background-color: #28a745;"
+                                routerLink="/login" routerLinkActive="active">
+                </button> 
+                
+            </div>
         </div>
     </div>
-</div>
+
+</section>
+
+
+<!-- footer -->
+<section class="footer" >
+    <div class="footer-content">
+        <h3>Soul Compass</h3>
+        <p>Nơi Định Hướng Tâm Hồn</p>
+        <div class="icon">
+            <a><i class="pi pi-facebook" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-youtube" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-tiktok" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-discord" style="font-size: 1.3rem"></i></a>
+        </div>
+    </div>
+    <div class="footer-content">
+        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+        <li><a routerLink="/test" routerLinkActive="active">Test</a></li>
+        <li><a>Contact</a></li>
+    </div>
+    <div class="footer-content">
+        <li><a>Help</a></li>
+        <li><a>Privacy</a></li>
+        <li><a>Condition</a></li>
+        <li><a>FAQS</a></li>
+    </div>
+</section>
