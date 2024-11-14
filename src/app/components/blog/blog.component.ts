@@ -34,6 +34,7 @@ import AOS from 'aos';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
+  isMenuOpen = false;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
@@ -68,6 +69,13 @@ export class BlogComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.document.getElementById("contact-sec")?.scrollIntoView({ behavior: "smooth" });
     }
+  }
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    console.log("Open", this.isMenuOpen);
+  }
+  closeMenu() {
+    this.isMenuOpen = false;
   }
   items = [
     { title: 'Slide 1', image: 'assets/14.gif' },

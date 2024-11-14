@@ -534,9 +534,9 @@ nav {
     color: #504d4d;
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:1064px) {
     .Mid-top {
-        display: block;
+      
         position: fixed;
         left: -300px;
         top: 0;
@@ -549,10 +549,8 @@ nav {
         background-color: #fff;
         transition: left 0.2s ease;
     }
-    .Mid-top.open {
-        left: 0;
-    }
 
+    
     .Mid-top ul{
         display: block;
         position: fixed;

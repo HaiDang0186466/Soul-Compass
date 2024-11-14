@@ -7,12 +7,10 @@
                     <img src="assets/logo.png" alt="Soul Compass">
                     <h3>Soul Compass</h3>
                 </div>
-               
             </div>
-            <div class="Mid-top">
-                <button class="left-arrow"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
+            <div class="Mid-top" [ngStyle]="{ 'left': isMenuOpen ? '0px' : '-300px' }">
+                <button class="left-arrow" (click)="closeMenu()"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
                 <ul>
-        
                     <li><a routerLink="/home" routerLinkActive="active">Home
                         <i class="pi pi-home" style="font-size: 1rem"></i>
                     </a></li>
@@ -25,29 +23,24 @@
                     <li><a routerLink="/user" routerLinkActive="active">Contact
                         <i class="pi pi-phone" style="font-size: 1rem"></i>
                     </a></li>
-                    
                 </ul>
-
             </div>
             <div class="Left-top">
                 <ul>
                     <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
                     <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
                 </ul>
-                <button class="tab-bar"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
+                <button class="tab-bar" (click)="toggleMenu()"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
             </div>
         </nav>
     </div>
 </section>
 
-
 <section class="body-1 flex flex-column align-items-center  py-5">
-
     <div class="text-center mb-5">
         <span class="text-900 font-bold text-2xl">How Are You Today </span>
         <i class="pi pi-heart-fill text-red-500 text-2xl"></i>
     </div>
-
     <div class="">
         <div class="flex flex-wrap justify-content-center gap-7">
 
@@ -131,26 +124,25 @@
 </section>
 
 <section class="test" id="Test"  *ngIf="showTestSection">
-    
     <!-- Quiz -->
     <div class="test-here">
         <div class="grid nested-grid">
             <div class="col-8">
                 <div class="grid">
                     <div class="col-12 p-3">
-                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Đây Là Câu Hỏi</div>
+                        <div class="text-center bg-blue-50  h-6rem p-3 border-round-sm  font-bold">Đây Là Câu Hỏi</div>
                     </div>
                     <div class="col-6 p-3">
-                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 1</div>
+                        <div class="text-center bg-cyan-100  h-6rem p-3 border-round-sm  font-bold">Câu Trả Lời 1</div>
                     </div>
                     <div class="col-6 p-3">
-                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 2</div>
+                        <div class="text-center bg-cyan-100  h-6rem p-3 border-round-sm font-bold">Câu Trả Lời 2</div>
                     </div>
                     <div class="col-6 p-3">
-                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 3</div>
+                        <div class="text-center bg-cyan-100 h-6rem p-3 border-round-sm font-bold">Câu Trả Lời 3</div>
                     </div>
                     <div class="col-6 p-3">
-                        <div class="text-center  h-6rem p-3 border-round-sm bg-primary font-bold">Câu Trả Lời 4</div>
+                        <div class="text-center bg-cyan-100  h-6rem p-3 border-round-sm font-bold">Câu Trả Lời 4</div>
                     </div>
                     
                 </div>
@@ -172,8 +164,6 @@
    
 
 </section>
-
-<p-button pButton label="JavaScript" (click)="selectAnswer('JavaScript')" class="text-center p-3 border-round-sm"></p-button>
 
 <!-- Footer -->
 <section class="footer" >

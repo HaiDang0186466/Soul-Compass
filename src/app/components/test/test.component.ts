@@ -14,6 +14,7 @@ import { CardModule } from 'primeng/card';
 export class TestComponent implements OnInit {
   showTestSection: boolean = false;
   selectedAnswer!: string; 
+  isMenuOpen = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -36,18 +37,28 @@ export class TestComponent implements OnInit {
     this.clicked = true;
     this.clicked1 = false;
     this.clicked2 = false;
+    console.log("Emotion: Happy", this.clicked);
   }
 
   toggleIcon1() {
     this.clicked = false;
     this.clicked1 = true;
     this.clicked2 = false;
+    console.log("Emotion: Normal", this.clicked1);
   }
 
   toggleIcon2() {
     this.clicked = false;
     this.clicked1 = false;
     this.clicked2 = true;
+    console.log("Emotion: Sad", this.clicked2);
+  }
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    console.log("Open", this.isMenuOpen);
+  }
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 
   toTest() {
@@ -62,15 +73,4 @@ export class TestComponent implements OnInit {
   }
 
  
-
-  selectAnswer(answer: string) {
-    this.selectedAnswer = answer;
-    console.log("Câu trả lời đã chọn:", this.selectedAnswer);
-  }
-
-  submitAnswer() {
-    console.log("Câu trả lời của bạn là:", this.selectedAnswer);
-    // Xử lý câu trả lời đã chọn
-  }
-
 }

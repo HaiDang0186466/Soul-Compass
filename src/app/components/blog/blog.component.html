@@ -11,8 +11,8 @@
                     </div>
                    
                 </div>
-                <div class="Mid-top">
-                    <button class="left-arrow"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
+                <div class="Mid-top" [ngStyle]="{ 'left': isMenuOpen ? '0px' : '-300px' }">
+                    <button class="left-arrow" (click)="closeMenu()"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
                     <ul>
             
                         <li><a routerLink="/home" routerLinkActive="active">Home
@@ -36,7 +36,7 @@
                         <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
                         <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
                     </ul>
-                    <button class="tab-bar"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
+                    <button class="tab-bar" (click)="toggleMenu()"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
                 </div>
             </nav>
         </div>

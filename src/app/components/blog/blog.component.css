@@ -283,16 +283,16 @@ nav {
     background-color: transparent;
     padding: 8px 0;
     font-size: 1rem;
-    color: #514b4b; /* Màu chữ */
+    color: #514b4b; 
 }
 
 .search-bar input[type="text"]::placeholder {
-    color: #aaa; /* Màu placeholder nhạt */
+    color: #aaa;
 }
 
 /* Hiệu ứng hover cho toàn khung tìm kiếm */
 .search-bar:hover {
-    border-color: #865edd; /* Đổi màu viền khi hover */
+    border-color: #865edd; 
 }
 
 
@@ -327,7 +327,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    background-color: #333; /* Điều chỉnh màu nền theo ý muốn */
+    background-color: #333; 
     color: #fff;
     padding: 2rem;
 }
@@ -398,7 +398,7 @@ nav {
     color: #504d4d;
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:1064px) {
     .Mid-top {
         display: block;
         position: fixed;
@@ -480,12 +480,4 @@ nav {
         color: #fff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
-
-    .mascot-image img{
-        height: 400px;
-        width: 400px;
-    }
-
-
-
 }
