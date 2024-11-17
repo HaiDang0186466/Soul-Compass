@@ -20,7 +20,7 @@
                     <li><a routerLink="/test" routerLinkActive="active">Test
                         <i class="pi pi-clipboard" style="font-size: 1rem"></i>
                     </a></li>
-                    <li><a routerLink="/user" routerLinkActive="active">Contact
+                    <li><a routerLink="/contact" routerLinkActive="active">Contact
                         <i class="pi pi-phone" style="font-size: 1rem"></i>
                     </a></li>
                 </ul>
@@ -36,7 +36,7 @@
     </div>
 </section>
 
-<section class="body-1 flex flex-column align-items-center  py-5">
+<section class="body-1 flex flex-column align-items-center  py-5" id="Top" *ngIf="showTopSection">
     <div class="text-center mb-5">
         <span class="text-900 font-bold text-2xl">How Are You Today </span>
         <i class="pi pi-heart-fill text-red-500 text-2xl"></i>
@@ -122,47 +122,75 @@
     </div>
 
 </section>
-
+<!-- Test -->
 <section class="test" id="Test"  *ngIf="showTestSection">
     <!-- Quiz -->
     <div class="test-here">
         <div class="grid nested-grid">
-            <div class="col-8">
-                <div class="grid">
-                    <div class="col-12 p-3">
-                        <div class="text-center bg-blue-50  h-6rem p-3 border-round-sm  font-bold">Đây Là Câu Hỏi</div>
-                    </div>
-                    <div class="col-6 p-3">
-                        <div class="text-center bg-cyan-100  h-6rem p-3 border-round-sm  font-bold">Câu Trả Lời 1</div>
-                    </div>
-                    <div class="col-6 p-3">
-                        <div class="text-center bg-cyan-100  h-6rem p-3 border-round-sm font-bold">Câu Trả Lời 2</div>
-                    </div>
-                    <div class="col-6 p-3">
-                        <div class="text-center bg-cyan-100 h-6rem p-3 border-round-sm font-bold">Câu Trả Lời 3</div>
-                    </div>
-                    <div class="col-6 p-3">
-                        <div class="text-center bg-cyan-100  h-6rem p-3 border-round-sm font-bold">Câu Trả Lời 4</div>
-                    </div>
-                    
+          <div class="col-8">
+            <div class="grid">
+              <!-- Display current question -->
+              <div class="col-12 p-3 align-items-center">
+                <div class="flex justify-content-center align-items-center bg-blue-50 h-6rem p-3 border-round-sm font-bold">
+                  {{ questions[currentQuestionIndex].text }}
                 </div>
+              </div>
+      
+              <!-- Display answers as buttons, highlight selected answer -->
+              <div *ngFor="let answer of questions[currentQuestionIndex].answers" class="col-6 p-3">
+                <p-button
+                  [label]="answer.text"
+                  class="flex justify-content-center align-items-center h-6rem p-3 border-round-sm font-bold"
+                  [styleClass]="selectedAnswers[currentQuestionIndex] === answer.score ? 'bg-blue-500' : 'bg-blue-50'"
+                  (click)="selectAnswer(answer.score)"
+                ></p-button>
+              </div>
+      
+              <!-- Navigation buttons -->
+              <div class="col-12 p-3 flex justify-content-center align-items-center">
+                <p-button class="p-3" label="Back" (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0"></p-button>
+                <p-button class="p-3" label="Next" (click)="nextQuestion()" [disabled]="!isAnswerSelected() || currentQuestionIndex === questions.length - 1"></p-button>
+              </div>
             </div>
-            <div class="col-4 p-3">
-                <div class="card-container">
-                    <p-card header="Progress" class="text-center p-2">
-                        <div class="quote-content">
-                            <p class="text-xl p-2 text-700 mb-2">01/30</p>
-                        </div>
-                        <p-button class="p-2" size="large" label="Done" severity="success"></p-button>
-                        <p-button class="p-2" size="large" label="Quit" severity="danger"></p-button>
-                    </p-card>
+          </div>
+      
+          <!-- Progress and Done/Quit buttons -->
+          <div class="col-4 p-3">
+            <div class="card-container">
+              <p-card header="Progress" class="text-center p-2">
+                <div class="quote-content">
+                  <p class="text-xl p-2 text-700 mb-2">{{ getProgress() }}</p>
                 </div>
+                <p-button
+                  class="p-2"
+                  label="Done"
+                  (click)="toMess()"
+                  [disabled]="currentQuestionIndex !== questions.length - 1 || !isAnswerSelected()"
+                ></p-button>
+                <p-button class="p-2" label="Quit" severity="danger" (click)="isQuit()"></p-button>
+              </p-card>
             </div>
+          </div>
         </div>
+      </div>
+</section>
+
+<!-- Result-Mess -->
+<section class="mess flex flex-wrap justify-content-center gap-7" id="Mess" *ngIf="showMessSection">
+    <div class="card flex justify-content-center align-items-center mt-3 w-full md:w-6 lg:w-4">
+        <p-card header="Thanks For Doing The Test" class="text-center flex p-5">
+            <div class="justify-content-center align-items-center pb-2">
+                <p *ngIf="!isDone" class="text-xl text-700 mb-2 p-2 fadein animation-duration-400 animation-iteration-infinite">Analyzing ...</p>
+                <p *ngIf="isDone" class="text-xl text-green-500 mb-2 p-2">Done</p>
+                <p-progressSpinner *ngIf="!isDone" class="p-2" ariaLabel="loading"></p-progressSpinner>
+                <i *ngIf="isDone" class="pi pi-check-circle text-green-500 text-4xl p-2"></i>
+            </div>
+            <p-button class="pt-2" 
+                    *ngIf="showResultButton" 
+                    label="See Your Result" 
+                    ></p-button>
+        </p-card>
     </div>
-
-   
-
 </section>
 
 <!-- Footer -->
@@ -181,7 +209,7 @@
         <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
         <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
         <li><a routerLink="/test" routerLinkActive="active">Test</a></li>
-        <li><a>Contact</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
     </div>
     <div class="footer-content">
         <li><a>Help</a></li>

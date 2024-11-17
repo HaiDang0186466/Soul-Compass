@@ -1,0 +1,40 @@
+<section class="top sticky top-0 " id = "home">
+    <div class="top-box">
+        <nav>
+            <div class="Right-top">
+                <div class="logo" routerLink="/home" routerLinkActive="active">
+                    <img src="assets/logo.png" alt="Soul Compass">
+                    <h3>Soul Compass</h3>
+                </div>
+               
+            </div>
+            <div class="Mid-top" [ngStyle]="{ 'left': isMenuOpen ? '0px' : '-300px' }">
+                <button class="left-arrow" (click)="closeMenu()"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
+                <ul>
+        
+                    <li><a routerLink="/home" routerLinkActive="active">Home
+                        <i class="pi pi-home" style="font-size: 1rem"></i>
+                    </a></li>
+                    <li><a routerLink="/blog" routerLinkActive="active">Blog
+                        <i class="pi pi-moon" style="font-size: 1rem"></i>
+                    </a></li>
+                    <li><a routerLink="/test" routerLinkActive="active">Test
+                        <i class="pi pi-clipboard" style="font-size: 1rem"></i>
+                    </a></li>
+                    <li><a routerLink="/contact" routerLinkActive="active">Contact
+                        <i class="pi pi-phone" style="font-size: 1rem"></i>
+                    </a></li>
+                    
+                </ul>
+
+            </div>
+            <div class="Left-top">
+                <ul>
+                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                    <li><a routerLink="/register" routerLinkActive="active">Regist</a></li>
+                </ul>
+                <button class="tab-bar" (click)="toggleMenu()"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
+            </div>
+        </nav>
+    </div>
+</section>
