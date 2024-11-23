@@ -15,36 +15,28 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 })
 export class TestComponent implements OnInit {
   showTestSection: boolean = false;
-  showMessSection: boolean = false;
-  showResultButton:boolean = false;
-  showFinalResultSection: boolean = false;
   showTopSection: boolean = true;
-  selectedAnswer!: string; 
   isMenuOpen = false;
-  isDone: boolean = false;
-  depressionLevel: string = ''; // To store the result message
+  currentQuestionIndex: number = 0;
+  selectedChoices: (number | null)[] = []; 
   totalScore: number = 0;
-
+  depressionLevel: string = '';
+  isAnalyzing: boolean = false; 
+  analysisText: string = 'Đang phân tích...'; 
 
   questions = [
-    { text: 'Đây Là Câu Hỏi 1', answers: [{ text: 'Câu Trả Lời 1', score: 0 }, { text: 'Câu Trả Lời 2', score: 1 }, { text: 'Câu Trả Lời 3', score: 2 }, { text: 'Câu Trả Lời 4', score: 3 }] },
-    { text: 'Đây Là Câu Hỏi 2', answers: [{ text: 'Câu Trả Lời 1', score: 0 }, { text: 'Câu Trả Lời 2', score: 1 }, { text: 'Câu Trả Lời 3', score: 2 }, { text: 'Câu Trả Lời 4', score: 3 }] },
+    { text: 'Bạn có thường xuyên cảm thấy buồn bã?', choices: ['Không bao giờ', 'Thỉnh thoảng', 'Thường xuyên', 'Rất thường xuyên'] },
+    { text: 'Bạn có khó ngủ hoặc mất ngủ?', choices: ['Không bao giờ', 'Thỉnh thoảng', 'Thường xuyên', 'Rất thường xuyên'] },
+    { text: 'Bạn có cảm thấy khó chịu trong lòng?', choices: ['Không bao giờ', 'Thỉnh thoảng', 'Thường xuyên', 'Rất thường xuyên'] },
+    { text: 'Bạn có cảm thấy buồn bực?', choices: ['Không bao giờ', 'Thỉnh thoảng', 'Thường xuyên', 'Rất thường xuyên'] },
+ 
   ];
-
-  currentQuestionIndex = 0;
-  selectedAnswers: (number | null)[] = Array(this.questions.length).fill(null); // Tracks selected scores
-
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
   ) {}
   
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-    }
-  }
-
   // Tương tác với thanh menu
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -54,7 +46,7 @@ export class TestComponent implements OnInit {
     this.isMenuOpen = false;
   }
 
-  // Tương tác với phần kiểm tra trạng thái hàng ngày:
+  // Tương tác với phần kiểm tra trạng thái hàng ngày
   clicked: boolean = false;
   clicked1: boolean = false;
   clicked2: boolean = false;
@@ -76,7 +68,6 @@ export class TestComponent implements OnInit {
     this.clicked2 = true;
     console.log("Emotion: Sad", this.clicked2);
   }
-
   // Di chuyển tới phần kiểm tra
   toTest() {
     if (isPlatformBrowser(this.platformId)) {
@@ -91,81 +82,58 @@ export class TestComponent implements OnInit {
     }
   }
 
-
-
-
-
-  selectAnswer(score: number) {
-    this.selectedAnswers[this.currentQuestionIndex] = score;
+  // Phần logic test
+  ngOnInit(): void {
+    this.selectedChoices = Array(this.questions.length).fill(null);
+    if (isPlatformBrowser(this.platformId)) {
+    } 
   }
-
-  nextQuestion() {
-    if (this.selectedAnswers[this.currentQuestionIndex] !== null) {
+  selectChoice(index: number): void {
+    this.selectedChoices[this.currentQuestionIndex] = index;
+  }  
+  goNext(): void {
+    if (
+      this.selectedChoices[this.currentQuestionIndex] !== null &&
+      this.currentQuestionIndex < this.questions.length - 1
+    ) {
       this.currentQuestionIndex++;
     }
   }
-
-  previousQuestion() {
+  goBack(): void {
     if (this.currentQuestionIndex > 0) {
       this.currentQuestionIndex--;
     }
   }
-  isAnswerSelected(): boolean {
-    return this.selectedAnswers[this.currentQuestionIndex] !== null;
+
+  getDepressionLevel(): string {
+    if (this.totalScore <= 4) return 'Không có dấu hiệu trầm cảm';
+    if (this.totalScore <= 8) return 'Trầm cảm nhẹ';
+    if (this.totalScore <= 12) return 'Trầm cảm trung bình';
+    return 'Trầm cảm nặng';
   }
-  getProgress(): string {
-    return `${this.currentQuestionIndex + 1} / ${this.questions.length}`;
-  }
-  isQuit(){
+  isQuit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.showTopSection = true;
-      window.scrollTo({ top: 0, behavior: "smooth"})
-      setTimeout(() => {
-        this.showTestSection = false;
-      }, 1000);
-    }
-  }
-  
-  calculateDepressionLevel() {
-    if (this.totalScore <= 5) {
-      this.depressionLevel = 'Không hoặc rất ít dấu hiệu trầm cảm';
-    } else if (this.totalScore <= 10) {
-      this.depressionLevel = 'Trầm cảm nhẹ';
-    } else if (this.totalScore <= 15) {
-      this.depressionLevel = 'Trầm cảm trung bình';
-    } else if (this.totalScore <= 20) {
-      this.depressionLevel = 'Trầm cảm nặng vừa';
-    } else {
-      this.depressionLevel = 'Trầm cảm nặng';
-    }
-    if (this.selectedAnswers.every(answer => answer !== null)) {
-      this.totalScore = this.selectedAnswers.reduce(
-        (acc: number, score: number | null) => acc + (score ?? 0),
-        0
-      );
-      this.calculateDepressionLevel();
+      this.selectedChoices = Array(this.questions.length).fill(null); 
+      this.currentQuestionIndex = 0; 
+      this.totalScore = 0;   
+      this.showTestSection = true; 
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
-  toMess() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.showMessSection = true; 
-      console.log("roll", this.document);
-      // Đợi Angular render xong trước khi cuộn xuống section
+  showResults(): void {
+    this.isAnalyzing = true;
+    this.analysisText = 'Đang phân tích...';
+    setTimeout(() => {
+      this.analysisText = 'Đã phân tích xong';
+      this.totalScore = this.selectedChoices.reduce((acc: number, choice) => acc + (choice ?? 0), 0);
+      this.depressionLevel = this.getDepressionLevel();
+
       setTimeout(() => {
-        this.document.getElementById("Mess")?.scrollIntoView({ behavior: "smooth" });
-      }, 0);
-      setTimeout(() => {
-        this.showTestSection = false;
-      }, 1000);
-      // Bắt đầu animation thay đổi trạng thái sau 5 giây
-      setTimeout(() => {
-        this.isDone = true; 
-      }, 5000);
-      setTimeout(() => {
-        this.showResultButton = true;
-      }, 5000);
-    }
-    
+        this.isAnalyzing = false;
+      }, 1000); 
+    }, 3000); 
   }
+
 }

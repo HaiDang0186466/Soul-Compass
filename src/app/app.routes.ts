@@ -16,6 +16,11 @@ export const routes: Routes = [
       loadComponent: () => import('./components/test/test.component').then((c) => c.TestComponent)
     },
     {
+      path: 'contact',
+      loadComponent: () => import('./components/contact/contact.component').then((c) => c.ContactComponent)
+    },
+
+    {
       path: 'login',
       loadComponent: () => import('./components/login/login.component').then((c) => c.LoginComponent)
     },
@@ -24,9 +29,12 @@ export const routes: Routes = [
       loadComponent: () => import('./components/register/register.component').then((c) => c.RegisterComponent)
     },
     {
-      path: 'contact',
-      loadComponent: () => import('./components/contact/contact.component').then((c) => c.ContactComponent)
+      path: 'result',
+      loadComponent: () => import('./components/result/result.component').then((c) => c.ResultComponent)
     },
+
+
+    
     {
       path: '',
       redirectTo: '/home',
