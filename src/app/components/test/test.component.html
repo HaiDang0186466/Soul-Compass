@@ -1,41 +1,4 @@
-<!-- Menubar -->
-<section class="top sticky top-0">
-    <div class="top-box">
-        <nav>
-            <div class="Right-top">
-                <div class="logo" routerLink="/home" routerLinkActive="active">
-                    <img src="assets/logo.png" alt="Soul Compass">
-                    <h3>Soul Compass</h3>
-                </div>
-            </div>
-            <div class="Mid-top" [ngStyle]="{ 'left': isMenuOpen ? '0px' : '-300px' }">
-                <button class="left-arrow" (click)="closeMenu()"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
-                <ul>
-                    <li><a routerLink="/home" routerLinkActive="active">Home
-                        <i class="pi pi-home" style="font-size: 1rem"></i>
-                    </a></li>
-                    <li><a routerLink="/blog" routerLinkActive="active">Blog
-                        <i class="pi pi-moon" style="font-size: 1rem"></i>
-                    </a></li>
-                    <li><a routerLink="/test" routerLinkActive="active">Test
-                        <i class="pi pi-clipboard" style="font-size: 1rem"></i>
-                    </a></li>
-                    <li><a routerLink="/contact" routerLinkActive="active">Contact
-                        <i class="pi pi-phone" style="font-size: 1rem"></i>
-                    </a></li>
-                </ul>
-            </div>
-            <div class="Left-top">
-                <ul>
-                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-                    <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
-                </ul>
-                <button class="tab-bar" (click)="toggleMenu()"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
-            </div>
-        </nav>
-    </div>
-</section>
-
+<!-- Top -->
 <section class="body-1 flex flex-column align-items-center  py-5" id="Top" *ngIf="showTopSection">
     <div class="text-center mb-5">
         <span class="text-900 font-bold text-2xl">How Are You Today </span>
@@ -127,7 +90,7 @@
     <!-- Quiz -->
     <div class="test-here">
       <div class="grid nested-grid">
-        <div class="col-8">
+        <div class="col-9">
           <div id="quiz" class="justify-center flex-column">
             <div class="questions flex justify-center ">
               <h2>Q{{ currentQuestionIndex + 1 }}:</h2>
@@ -162,13 +125,13 @@
         </div>
   
         <!-- Progress and Done/Quit buttons -->
-        <div class="col-4 p-3">
+        <div class="col-3 p-3">
           <div class="card-container">
             <p-card header="Progress" class="text-center p-2">
               <div class="quote-content">
                 <p class="text-xl p-2 text-700 mb-2">{{ currentQuestionIndex + 1 }}/{{ questions.length }}</p>
               </div>
-              <p-button class="p-2"
+              <p-button class="pt-2"
                         label="Done"
                         severity="success"
                         (click)="showResults()"
@@ -180,7 +143,7 @@
         </div>
       </div>
     </div>
-  
+  <!-- Mess-Result -->
     <div class="mess flex" id="mess-section">
         <div *ngIf="isAnalyzing" class="analysis">
           <p class="analyzing-text">{{ analysisText }}</p>
@@ -207,7 +170,6 @@
 
 </section>
   
-
 <!-- Footer -->
 <section class="footer" >
     <div class="footer-content">

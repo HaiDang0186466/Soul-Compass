@@ -1,40 +1,80 @@
-<section class="top sticky top-0 " id = "home">
-    <div class="top-box">
-        <nav>
-            <div class="Right-top">
-                <div class="logo" routerLink="/home" routerLinkActive="active">
-                    <img src="assets/logo.png" alt="Soul Compass">
-                    <h3>Soul Compass</h3>
-                </div>
-               
+<!-- Contact -->
+<section class="contact">
+    <p-splitter [style]="{ height: '100vh' }" styleClass="mb-5">
+        <ng-template pTemplate>
+            <div class="col flex-column align-items-center justify-content-center ">
+                <h2 class="text-center">Các địa điểm khám tâm lý</h2>
+                <div class="scrollable-container">
+                    <p-card class=" flex p-2" *ngFor="let location of locations; let i = index" [style]="{ width: '100%', height: 'auto' }">
+                      <ng-template pTemplate="header">
+                        <div class="flex align-items-center">
+                          <img class="ct-img pl-2" [src]="location.image" alt="Hình ảnh địa điểm" />
+                          <!-- Thông tin bên phải -->
+                          <div class="flex flex-column">
+                            <h3 class="text-lg font-bold m-0 p-2 pl-3">{{ location.name }}</h3>
+                            <p class="text-sm text-secondary m-0 p-2 pl-3">{{ location.address }}</p>
+                            <p-rating class="p-2 pl-3" [(ngModel)]="location.rating" [readonly]="true" [cancel]="false"></p-rating>
+                          </div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center p-3">
+                          <p-button
+                            [label]="isDescriptionVisible[i] ? 'Đóng' : 'Xem Thêm'"
+                            severity="secondary"
+                            class="p-1"
+                            (click)="toggleDescription(i)"
+                          ></p-button>
+                          <p-button label="Đường Đi" class="p-1"></p-button>
+                        </div>
+                      </ng-template>
+                      <div *ngIf="isDescriptionVisible[i]" class="description p-3" [innerHTML]="location.description"></div>
+                    </p-card>
+                  </div>
+                  
             </div>
-            <div class="Mid-top" [ngStyle]="{ 'left': isMenuOpen ? '0px' : '-300px' }">
-                <button class="left-arrow" (click)="closeMenu()"><i class="pi pi-arrow-left" style="font-size: 1.3rem"></i></button> 
-                <ul>
+        </ng-template>
+        <ng-template pTemplate class="flex align-items-center justify-content-center">
+          <div class="col flex-column align-items-center justify-content-center">
+            <!-- Phần nhập địa chỉ -->
+            <div class="flex flex-column align-items-center mb-4 w-11">
+              <h3 class="text-center mb-2">Địa chỉ của bạn</h3>
+              <p-inputGroup class="w-full pl-7">
+                <input type="text" pInputText placeholder="Your Address" class="w-full" />
+                <button type="button" pButton icon="pi pi-search" class="p-button"></button>
+              </p-inputGroup>
+            </div>
         
-                    <li><a routerLink="/home" routerLinkActive="active">Home
-                        <i class="pi pi-home" style="font-size: 1rem"></i>
-                    </a></li>
-                    <li><a routerLink="/blog" routerLinkActive="active">Blog
-                        <i class="pi pi-moon" style="font-size: 1rem"></i>
-                    </a></li>
-                    <li><a routerLink="/test" routerLinkActive="active">Test
-                        <i class="pi pi-clipboard" style="font-size: 1rem"></i>
-                    </a></li>
-                    <li><a routerLink="/contact" routerLinkActive="active">Contact
-                        <i class="pi pi-phone" style="font-size: 1rem"></i>
-                    </a></li>
-                    
-                </ul>
+            <!-- Phần bản đồ -->
+            <div class="flex flex-column align-items-center w-11 pl-7">
 
             </div>
-            <div class="Left-top">
-                <ul>
-                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-                    <li><a routerLink="/register" routerLinkActive="active">Regist</a></li>
-                </ul>
-                <button class="tab-bar" (click)="toggleMenu()"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
-            </div>
-        </nav>
+          </div>
+        </ng-template>
+        
+        
+    </p-splitter>
+</section>
+<!-- Footer -->
+<section class="footer" >
+    <div class="footer-content">
+        <h3>Soul Compass</h3>
+        <p>Nơi Định Hướng Tâm Hồn</p>
+        <div class="icon">
+            <a><i class="pi pi-facebook" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-youtube" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-tiktok" style="font-size: 1.3rem"></i></a>
+            <a href="" class=""><i class="pi pi-discord" style="font-size: 1.3rem"></i></a>
+        </div>
+    </div>
+    <div class="footer-content">
+        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+        <li><a routerLink="/test" routerLinkActive="active">Test</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </div>
+    <div class="footer-content">
+        <li><a>Help</a></li>
+        <li><a>Privacy</a></li>
+        <li><a>Condition</a></li>
+        <li><a>FAQS</a></li>
     </div>
 </section>

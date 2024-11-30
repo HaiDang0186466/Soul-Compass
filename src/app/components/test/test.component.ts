@@ -9,7 +9,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, ButtonModule, CommonModule, CardModule, ProgressSpinnerModule],
+  imports: [RouterLink, RouterLinkActive, ButtonModule, CommonModule, CardModule, ProgressSpinnerModule,],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })

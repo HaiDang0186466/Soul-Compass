@@ -12,8 +12,6 @@ import AOS from 'aos';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isMenuOpen = false;
-
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
@@ -48,12 +46,5 @@ export class HomeComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.document.getElementById("contact-sec")?.scrollIntoView({ behavior: "smooth" });
     }
-  }
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-    console.log("Open", this.isMenuOpen);
-  }
-  closeMenu() {
-    this.isMenuOpen = false;
   }
 }
