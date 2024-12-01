@@ -29,8 +29,8 @@ export const routes: Routes = [
       loadComponent: () => import('./components/register/register.component').then((c) => c.RegisterComponent)
     },
     {
-      path: 'result',
-      loadComponent: () => import('./components/result/result.component').then((c) => c.ResultComponent)
+      path: 'bl-child',
+      loadComponent: () => import('./components/bl-child/bl-child.component').then((c) => c.BlChildComponent)
     },
 
 
