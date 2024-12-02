@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FieldsetModule } from 'primeng/fieldset';
 import { AvatarModule } from 'primeng/avatar';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-bl-child',
@@ -14,6 +15,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './bl-child.component.css'
 })
 export class BlChildComponent {
+  blogData: any;
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.blogData = params;
+    });
+  }
+
   comments = [
     { 
       avatar: 'assets/3.gif', 
@@ -26,7 +37,7 @@ export class BlChildComponent {
       disliked: false 
     },
     { 
-      avatar: 'assets/3.gif', 
+      avatar: 'assets/4.gif', 
       username: 'Trần Thị A', 
       content: 'Tuyệt vời, cảm ơn!', 
       likes: 25, 
@@ -36,7 +47,7 @@ export class BlChildComponent {
       disliked: false 
     },
     { 
-      avatar: 'assets/3.gif', 
+      avatar: 'assets/5.gif', 
       username: 'Lê Minh C', 
       content: 'Cảm động quá, mong được xem thêm!', 
       likes: 30, 
@@ -46,7 +57,7 @@ export class BlChildComponent {
       disliked: false
     },
     { 
-      avatar: 'assets/3.gif', 
+      avatar: 'assets/paimon.gif', 
       username: 'Phạm Quang D', 
       content: 'Cảm ơn vì bài viết!', 
       likes: 15, 
@@ -56,7 +67,7 @@ export class BlChildComponent {
       disliked: false
     },
     { 
-      avatar: 'assets/3.gif', 
+      avatar: 'assets/idk.gif', 
       username: 'Bùi Hoàng E', 
       content: 'Rất hay, sẽ chia sẻ với bạn bè!', 
       likes: 10, 
@@ -67,33 +78,31 @@ export class BlChildComponent {
     }
   ];
 
-// Hàm xử lý khi nhấn nút like
-toggleLike(comment: any) {
-  if (comment.liked) {
-    comment.likes--;
-    comment.liked = false; 
-  } else {
-    comment.likes++;
-    comment.liked = true; 
-    if (comment.disliked) { 
-      comment.dislikes--;
-      comment.disliked = false;
-    }
-  }
-}
-
-// Hàm xử lý khi nhấn nút dislike
-toggleDislike(comment: any) {
-  if (comment.disliked) {
-    comment.dislikes--;
-    comment.disliked = false;
-  } else {
-    comment.dislikes++;
-    comment.disliked = true;
-    if (comment.liked) { 
+  toggleLike(comment: any) {
+    if (comment.liked) {
       comment.likes--;
-      comment.liked = false;
+      comment.liked = false; // Bỏ like
+    } else {
+      comment.likes++;
+      comment.liked = true; // Thêm like
+      if (comment.disliked) { // Nếu đang dislike, bỏ dislike
+        comment.dislikes--;
+        comment.disliked = false;
+      }
     }
   }
-}
+  
+  toggleDislike(comment: any) {
+    if (comment.disliked) {
+      comment.dislikes--;
+      comment.disliked = false; // Bỏ dislike
+    } else {
+      comment.dislikes++;
+      comment.disliked = true; // Thêm dislike
+      if (comment.liked) { // Nếu đang like, bỏ like
+        comment.likes--;
+        comment.liked = false;
+      }
+    }
+  }
 }

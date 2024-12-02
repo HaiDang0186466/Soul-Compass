@@ -4,6 +4,9 @@
 .border-circle {
     border-radius: 50%;
 }
+.avatar {
+    object-fit: cover;
+}
 .mt-4 {
     margin-top: 1rem;
 }

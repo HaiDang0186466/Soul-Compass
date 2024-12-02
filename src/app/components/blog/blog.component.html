@@ -60,9 +60,9 @@
                 </div>
               </div>
           
-              <!-- Phần footer với lượt xem, lượt thích và button "Xem ngay" -->
+              <!-- Phần footer với lượt xem, lượt thích và button -->
               <div class="card-footer">
-                <!-- Phần lượt xem và lượt thích (căn trái) -->
+                <!-- Phần lượt xem và lượt thích  -->
                 <div class="left-section">
                   <div class="flex align-items-center gap-2">
                     <span>{{blog.watch}}</span>
@@ -74,9 +74,9 @@
                   </div>
                 </div>
           
-                <!-- Phần button "Xem ngay" (căn phải) -->
+                <!-- Phần button -->
                 <div class="right-section">
-                  <button class="btn-car">Xem ngay</button>
+                  <button class="btn-car" (click)="viewBlog(blog)">Xem ngay</button>
                 </div>
               </div>
             </div>

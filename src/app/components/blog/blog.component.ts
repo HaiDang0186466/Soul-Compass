@@ -10,6 +10,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import AOS from 'aos';
 
@@ -27,8 +28,7 @@ import AOS from 'aos';
     DataViewModule,
     ButtonModule,
     TagModule,
-    CommonModule
-  
+    CommonModule,
   ],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
@@ -52,22 +52,19 @@ export class BlogComponent implements OnInit {
   ];
 
   blogs = [
-    { title: 'Cuộc sống hàng ngày', image: 'assets/2.gif', tags: ['Love', 'Story', 'People'], author: 'Nguyễn Văn A', watch:'1000', like:'969' },
-    { title: 'Cuộc tranh cử của tôi', image: 'assets/trump.jpg', tags: ['Story', 'People'], author: 'Đỗ Nam Trung', watch:'999', like:'969' },
-    { title: 'Cách tôi thống nhất đất nước', image: 'assets/kim.jpg', tags: ['Story','Funny','People'], author: 'Kim Chính Ân', watch:'999', like:'989' },
-    { title: 'Nghệ thuật cuộc sống', image: 'assets/3.gif', tags: ['Art', 'Pics'], author: 'Nguyễn Văn B', watch:'690', like:'643' },
-    { title: 'Câu chuyện buồn', image: 'assets/4.gif', tags: ['Story', 'People'], author: 'Nguyễn Văn C', watch:'596', like:'569' },
-    { title: 'Những khoảnh khắc đẹp', image: 'assets/5.gif', tags: ['Pics'], author: 'Nguyễn Văn D', watch:'203', like:'86' },
-    { title: 'Con người và cuộc sống', image: 'assets/6.gif', tags: ['People', 'Love'], author: 'Nguyễn Văn E', watch:'698', like:'660' },
-    { title: 'Cách vực dậy tinh thần', image: 'assets/1.gif', tags: ['People', 'Love'], author: 'Nguyễn Văn E', watch:'658', like:'621' },
-    { title: 'Nghệ thuật là bất tận', image: 'assets/14.gif', tags: ['Art', 'Love'], author: 'Nguyễn Văn E', watch:'698', like:'660' },
-    { title: 'Thất bại là mẹ thành công', image: 'assets/8.gif', tags: ['Story', 'Love'], author: 'Nguyễn Văn E', watch:'698', like:'660' },
-    { title: 'Cách giao tiếp cơ bản', image: 'assets/9.gif', tags: ['Story', 'People'], author: 'Nguyễn Văn E', watch:'798', like:'760' },
-    { title: 'Nỗi buồn trong tôi', image: 'assets/hamster.jpg', tags: ['Story',], author: 'Nguyễn Văn E', watch:'569', like:'486' },
-
-    
+    { id: 1, title: 'Cuộc sống hàng ngày', image: 'assets/2.gif', tags: ['Love', 'Story', 'People'], author: 'Nguyễn Văn A', watch:'1000', like:'969'},
+    { id: 2, title: 'Cuộc tranh cử của tôi', image: 'assets/trump.jpg', tags: ['Story', 'People'], author: 'Đỗ Nam Trung', watch:'999', like:'969' },
+    { id: 3,title: 'Cách tôi thống nhất đất nước', image: 'assets/kim.jpg', tags: ['Story','Funny','People'], author: 'Kim Chính Ân', watch:'999', like:'989' },
+    { id: 4,title: 'Nghệ thuật cuộc sống', image: 'assets/3.gif', tags: ['Art', 'Pics'], author: 'Nguyễn Văn B', watch:'690', like:'643' },
+    { id: 5,title: 'Câu chuyện buồn', image: 'assets/4.gif', tags: ['Story', 'People'], author: 'Nguyễn Văn C', watch:'596', like:'569' },
+    { id: 6,title: 'Những khoảnh khắc đẹp', image: 'assets/5.gif', tags: ['Pics'], author: 'Nguyễn Văn D', watch:'203', like:'86' },
+    { id: 7,title: 'Con người và cuộc sống', image: 'assets/6.gif', tags: ['People', 'Love'], author: 'Nguyễn Văn E', watch:'698', like:'660' },
+    { id: 8,title: 'Cách vực dậy tinh thần', image: 'assets/1.gif', tags: ['People', 'Love'], author: 'Nguyễn Văn E', watch:'658', like:'621' },
+    { id: 9,title: 'Nghệ thuật là bất tận', image: 'assets/14.gif', tags: ['Art', 'Love'], author: 'Nguyễn Văn E', watch:'698', like:'660' },
+    { id: 10,title: 'Thất bại là mẹ thành công', image: 'assets/8.gif', tags: ['Story', 'Love'], author: 'Nguyễn Văn E', watch:'698', like:'660' },
+    { id: 11,title: 'Cách giao tiếp cơ bản', image: 'assets/9.gif', tags: ['Story', 'People'], author: 'Nguyễn Văn E', watch:'798', like:'760' },
+    { id: 12,title: 'Nỗi buồn trong tôi', image: 'assets/hamster.jpg', tags: ['Story',], author: 'Nguyễn Văn E', watch:'569', like:'486' }, 
   ];
-
   selectedTags: string[] = [];
   filteredBlogs = this.blogs;
   searchTerm: string = '';
@@ -78,9 +75,18 @@ export class BlogComponent implements OnInit {
     { breakpoint: '767px', numVisible: 1, numScroll: 1 },
   ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) {}
-
-  ngOnInit(): void {}
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
+  ngOnInit(): void {
+   
+  }
+  viewBlog(blog: any) {
+    this.router.navigate(['/bl-child'], { queryParams: blog });
+  }
+  
 
   // Toggle Chip Selection
   toggleChip(tag: string) {

@@ -1,5 +1,5 @@
 <section class="ct pt-2">
-    <div class="flex flex-column md:flex-row gap-4 w-full max-w-6xl">
+    <div class=" blog-details flex flex-column md:flex-row gap-4 w-full max-w-6xl">
       <!-- Thông tin người dùng -->
       <div class="surface-0 p-4 border-round shadow-2 flex flex-column align-items-center w-full md:w-6">
         <!-- Ảnh nền -->
@@ -10,12 +10,12 @@
         <div class="relative -mt-6">
           <div
             class="border-circle bg-white p-2 shadow-3 flex align-items-center justify-content-center">
-            <img src="assets/2.gif" alt="Avatar" class="w-8rem h-8rem border-circle"/>
+            <img [src]="blogData.image" alt="Avatar" class="avatar border-circle" style="width: 80px; height: 80px"/>
           </div>
         </div>
         <!-- Tên người dùng -->
         <div class="mt-4 text-center">
-          <h4 class="mt-0 mb-2">Nguyễn Văn A</h4>
+          <h4 class="mt-0 mb-2">{{ blogData.author }}</h4>
           <p class="text-secondary m-0">Start blogs since 2002.</p>
         </div>
     </div>
@@ -23,7 +23,7 @@
       <!-- Content-->
         <div class="surface-card shadow-2 p-4 flex-auto border-round">
             <div class="content">
-                <h1 class="text-primary">Cuộc Sống Hàng Ngày</h1>
+                <h1 class="text-primary">{{ blogData.title }}</h1>
                 <h3 class="text-secondary">Một ngày mới trôi qua thật yên bình</h3>
                 <p class="mt-4">Ngày mới bắt đầu bằng những tia nắng đầu tiên chiếu qua cửa sổ. Tôi thức dậy, nhìn đồng hồ và nhận ra rằng thời gian trôi qua thật nhanh. Cảm giác mệt mỏi vẫn còn nhưng tôi cố gắng đứng dậy, bắt đầu một ngày mới. Đôi khi, cuộc sống chỉ đơn giản là những thói quen hàng ngày, nhưng chúng lại mang đến cho tôi cảm giác bình yên khó tả.</p>
                 <h3>Những công việc nhỏ nhặt</h3>
@@ -35,16 +35,19 @@
             <!-- Phần like và xem -->
             <div class="flex justify-content-center gap-5">
                 <div class="flex align-items-center gap-2">
-                    <span>1000</span>
+                    <span>{{ blogData.watch }}</span>
                     <i class="pi pi-eye text-red" style="font-size: 1.3rem; color: blue"></i>
                 </div>
                 <div class="flex align-items-center gap-2">
-                    <span>969</span>
+                    <span> {{ blogData.like }}</span>
                     <i class="pi pi-heart" style="font-size: 1.3rem; color: red"></i>
                 </div>
             </div>
         </div>    
     </div>
+
+
+    <!-- Phần comment -->
     <div *ngFor="let comment of comments" class="card pt-4 pl-7 pr-7">
         <p-fieldset>
             <ng-template pTemplate="header">
@@ -58,17 +61,18 @@
             </p>
             <div class="flex pt-4 gap-5">
               <!-- Nút Like -->
-              <div class="flex align-items-center gap-2" (click)="toggleLike(comment)">
-                <span>{{ comment.likes }}</span>
-                <i [ngClass]="{'pi pi-thumbs-up': !comment.liked, 'pi pi-thumbs-up-fill': comment.liked}" 
-                   style="font-size: 1.3rem; color: blue"></i>
-              </div>
-              <!-- Nút Dislike -->
-              <div class="flex align-items-center gap-2" (click)="toggleDislike(comment)">
-                <span>{{ comment.dislikes }}</span>
-                <i [ngClass]="{'pi pi-thumbs-down': !comment.disliked, 'pi pi-thumbs-down-fill': comment.disliked}" 
-                   style="font-size: 1.3rem; color: blue"></i>
-              </div>
+                <div class="flex align-items-center gap-2" (click)="toggleLike(comment)">
+                  <span>{{ comment.likes }}</span>
+                  <i [ngClass]="{'pi pi-thumbs-up': !comment.liked, 'pi pi-thumbs-up-fill': comment.liked}" 
+                    style="font-size: 1.3rem; color: blue"></i>
+                </div>
+
+                <!-- Nút Dislike -->
+                <div class="flex align-items-center gap-2" (click)="toggleDislike(comment)">
+                  <span>{{ comment.dislikes }}</span>
+                  <i [ngClass]="{'pi pi-thumbs-down': !comment.disliked, 'pi pi-thumbs-down-fill': comment.disliked}" 
+                    style="font-size: 1.3rem; color: blue"></i>
+                </div>
             </div>
             <div class="comment-date">
               {{ comment.commentDate }}
