@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxCaptchaModule } from 'ngx-captcha';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgxCaptchaModule } from 'ngx-captcha';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-
 
 @Component({
   selector: 'app-register',
@@ -22,22 +22,58 @@ import { DialogModule } from 'primeng/dialog';
     CommonModule,
     DialogModule
   ],
-  
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  protected aFormGroup!: FormGroup;
-  siteKey: string = "6Le3CHwqAAAAAInPW07wgfTcrlzIQMoC6dTk2iEQ";
+  registerForm!: FormGroup;
+  siteKey: string = '6Le3CHwqAAAAAInPW07wgfTcrlzIQMoC6dTk2iEQ';
   captchaVerified = false;
-  registrationStatus: 'idle' | 'sendingRequest' | 'requestSent' | 'creatingAccount' | 'success' = 'idle';
+  emailExists = false;
+  usernameExists = false;
 
-  constructor(private formBuilder: FormBuilder,) {}
+  registrationStatus: 'idle' | 'sendingRequest' | 'success' = 'idle';
+
+  static accounts = [
+    { username: 'admin', email: 'admin', password: 'admin123' }, // Tài khoản admin
+    { username: 'existinguser', email: 'existinguser@example.com', password: 'password123' } // Người dùng mặc định
+  ];
+
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
-    this.aFormGroup = this.formBuilder.group({
-      recaptcha: ['', Validators.required]
-    });
+    this.registerForm = this.fb.group(
+      {
+        username: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+        recaptcha: ['', Validators.required]
+      },
+      { validators: this.passwordMatchValidator }
+    );
+  }
+
+  get username() {
+    return this.registerForm.get('username');
+  }
+
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
+
+  passwordMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
   onCaptchaSuccess() {
@@ -45,19 +81,29 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    if (this.captchaVerified) {
-      this.registrationStatus = 'sendingRequest';
-      setTimeout(() => {
-        this.registrationStatus = 'requestSent';
+    const username = this.registerForm.value.username;
+    const email = this.registerForm.value.email;
 
-        setTimeout(() => {
-          this.registrationStatus = 'creatingAccount';
+    // Kiểm tra trùng lặp email và username
+    const emailExists = RegisterComponent.accounts.some((acc) => acc.email === email);
+    const usernameExists = RegisterComponent.accounts.some((acc) => acc.username === username);
 
-          setTimeout(() => {
-            this.registrationStatus = 'success';
-          }, 3000);
-        }, 2000);
-      }, 3000);
+    if (emailExists) {
+      this.emailExists = true;
+    } else if (usernameExists) {
+      this.usernameExists = true;
+    } else if (this.registerForm.valid && this.captchaVerified) {
+      this.emailExists = false;
+      this.usernameExists = false;
+
+      RegisterComponent.accounts.push({
+        username: this.registerForm.value.username,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password
+      });
+
+      alert('Account created successfully!');
+      this.router.navigate(['/login']);
     }
   }
 }

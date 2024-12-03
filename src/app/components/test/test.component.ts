@@ -222,12 +222,11 @@ detailedAdvice: string[] = [];
     this.analysisText = 'Đang phân tích...';
     const messSection = document.getElementById('mess-section');
     if (messSection) {
-      const offset = 100; // Khoảng cách chừa cho menu (đơn vị: pixel)
+      const offset = 100;
       const top = messSection.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
-  
-    // Giả lập phân tích kết quả trong 3 giây
+    // Giả lập phân tích kết quả 
     setTimeout(() => {
       this.analysisText = 'Đã phân tích xong';
   
@@ -239,12 +238,10 @@ detailedAdvice: string[] = [];
   
       // Tạo lời khuyên
       this.generateAdvice();
-  
-      // Kết thúc quá trình phân tích
       setTimeout(() => {
         this.isAnalyzing = false;
-      }, 1000); // Thời gian chờ thêm 1 giây để hoàn tất hiển thị kết quả
-    }, 3000); // Thời gian giả lập phân tích (3 giây)
+      }, 1000); 
+    }, 3000); 
   }
   
   

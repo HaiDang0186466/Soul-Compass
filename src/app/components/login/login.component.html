@@ -9,24 +9,32 @@
                 <a class="font-medium text-blue-500 cursor-pointer ml-2" routerLink="/register" routerLinkActive="active">Create now!</a>
             </div>
 
-            <div>
-                <label for="email" class="block text-900 font-medium mb-2">Email</label>
-                <input id="email" type="text" placeholder="Email address" class="p-inputtext p-component p-element w-full mb-4">
-
-                <label for="password" class="block text-900 font-medium mb-2">Password</label>
-                <input id="password" type="password" placeholder="Password" class="p-inputtext p-component p-element w-full mb-4">
-
-                <div class="flex align-items-center justify-content-between mb-5">
-                    <div class="flex align-items-center">
-                        <p-checkbox id="rememberme" [binary]="true" styleClass="mr-2"></p-checkbox>
-                        <label for="rememberme" class="text-900">Remember me</label>
-                    </div>
-                    <a class="font-medium text-blue-500 cursor-pointer">Forgot password?</a>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <label for="email" class="block text-900 font-medium mb-2">Email</label>
+                    <input id="email" type="text" placeholder="Email address"
+                        formControlName="email" class="p-inputtext p-component p-element w-full mb-2"
+                        [ngClass]="{'ng-invalid ng-dirty': email.invalid && (email.touched || email.dirty)}">
+                    <small *ngIf="email?.errors?.['required'] && (email?.touched || email?.dirty)"
+                        class="p-error text-red-500">Email is required.</small>
+                    <small *ngIf="email?.errors?.['notFound']" class="p-error text-red-500">Account does not exist.</small>
                 </div>
 
-                <button pButton pRipple label="Sign In" icon="pi pi-sign-in" class="w-full mb-3 shadow-3 hover:shadow-5 text-white"  style="background-color: var( --purple-400);"></button>
-                <button pButton pRipple label="Register" icon="pi pi-user-plus" class="w-full text-white shadow-3 hover:shadow-5"  style="background-color: var( --purple-400);" routerLink="/register" routerLinkActive="active"></button>
-            </div>
+                <div>
+                    <label for="password" class="block text-900 font-medium mb-2">Password</label>
+                    <input id="password" type="password" placeholder="Password"
+                        formControlName="password" class="p-inputtext p-component p-element w-full mb-2"
+                        [ngClass]="{'ng-invalid ng-dirty': password.invalid && (password.touched || password.dirty)}">
+                    <small *ngIf="password?.errors?.['required'] && (password?.touched || password?.dirty)"
+                        class="p-error text-red-500">Password is required.</small>
+                    <small *ngIf="password?.errors?.['invalidPassword']" class="p-error text-red-500">Incorrect password.</small>
+                </div>
+
+                <button pButton pRipple label="Sign In" icon="pi pi-sign-in" class="w-full mb-3 shadow-3 hover:shadow-5 text-white"
+                    style="background-color: var(--purple-400);" [disabled]="loginForm.invalid"></button>
+                <button pButton pRipple label="Register" icon="pi pi-user-plus" class="w-full text-white shadow-3 hover:shadow-5"
+                    style="background-color: var(--purple-400);" routerLink="/register" routerLinkActive="active"></button>
+            </form>
         </div>
     </div>
 </section>

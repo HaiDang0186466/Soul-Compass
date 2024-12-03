@@ -29,12 +29,18 @@
 
             </div>
             <div class="Left-top">
-                <ul>
-                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-                    <li><a routerLink="/register" routerLinkActive="active">Regist</a></li>
+                <ul *ngIf="!(isLoggedIn$ | async); else loggedInContent">
+                  <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                  <li><a routerLink="/register" routerLinkActive="active">Regist</a></li>
                 </ul>
-                <button class="tab-bar" (click)="toggleMenu()"><i class="pi pi-align-justify" style="font-size: 1.3rem"></i></button>
-            </div>
+                <ng-template #loggedInContent>
+                  <div class="flex align-items-center">
+                    <span class="text-bold mr-2">{{ username$ | async }}</span>
+                    <ul><li><a (click)="logout()" routerLink="/login" routerLinkActive="active">Logout</a></li></ul>
+                  </div>
+                </ng-template>
+              </div>
+              
         </nav>
     </div>
 </section>

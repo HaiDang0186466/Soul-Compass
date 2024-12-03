@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Initialize AOS only if we're in a browser environment
     if (isPlatformBrowser(this.platformId)) {
       AOS.init();
     }
