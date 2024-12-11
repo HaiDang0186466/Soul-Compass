@@ -96,15 +96,15 @@
               <h2>Q{{ currentQuestionIndex + 1 }}:</h2>
               <h2 class="flex p-2">{{ questions[currentQuestionIndex].text }}</h2>
             </div>
-  
+
             <div *ngFor="let choice of questions[currentQuestionIndex].choices; let i = index" 
-                 (click)="selectChoice(i)"
+                (click)="onAnswerSelected(); selectChoice(i)"
                  [class.selected]="selectedChoices[currentQuestionIndex] === i"
                  class="choice">
-              <p class="choice-pre">{{ ['A', 'B', 'C', 'D','E'][i] }}</p>
+              <p class="choice-pre">{{ ['A', 'B', 'C', 'D'][i] }}</p>
               <p class="choice-text">{{ choice }}</p>
             </div>
-  
+
             <div class="btn-choice justify-content-center">
               <p-button class="p-2"
                         label="Back"
@@ -120,6 +120,7 @@
                         severity="info"
                         (click)="goNext()"
                         [disabled]="selectedChoices[currentQuestionIndex] === null || currentQuestionIndex === questions.length - 1"></p-button>
+                        
             </div>
           </div>
         </div>
@@ -150,16 +151,14 @@
         </div>
         <div *ngIf="!isAnalyzing && depressionLevel" class="results justify-center flex-column">
           <h2>Kết Quả</h2>
-          <p>Mức Độ Trầm Cảm Của Bạn: <strong>{{ depressionLevel }}</strong></p>
-          <p>Total Score: {{ totalScore }}</p>
+          <p>Trạng Thái Của Bạn: <strong>{{ depressionLevel }}</strong></p>
           <div class="advice-section">
-            <h2>Những lời khuyên hữu ích:</h2>
+            
             <ul class="flex flex-column">
-              <li class="flex align-items-center p-3" *ngFor="let advice of detailedAdvice">- {{ advice }}</li>
+              <li class="flex align-items-center text-left p-3" *ngFor="let advice of detailedAdvice">- {{ advice }}</li>
             </ul>
           </div>
           <div class="addd">
-            <h2>Trên đây là những lời khuyên hữu ích mà bạn có thể áp dụng cho tình trạng của mình</h2>
             <p>Hãy gặp trực tiếp bác sĩ tâm lý nếu bạn cần để họ có thể kiểm tra chính xác hơn tình trạng của bạn nhé <i class="pi pi-heart-fill" style="font-size: 1rem"></i></p>
             <a routerLink="/contact" routerLinkActive="active">Contact here
                 <i class="pi pi-phone" style="font-size: 1.2rem"></i>
